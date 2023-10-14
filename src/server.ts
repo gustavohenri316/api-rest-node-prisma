@@ -14,6 +14,7 @@ import ideaRouter from "./routers/idea-router/idea-router";
 import IdeaPhotoRouter from "./routers/idea-photo-router/idea-photo-router";
 import commentsRouter from "./routers/comments-router/comments-router";
 import likesCommentsRouter from "./routers/likes-comments-router/likes-comments-router";
+import notLikesCommentsRouter from "./routers/not-likes-comments-router/not-likes-comments-router";
 
 const main = async () => {
   config();
@@ -45,6 +46,7 @@ const main = async () => {
     IdeaPhotoRouter,
     commentsRouter,
     likesCommentsRouter,
+    notLikesCommentsRouter,
   ]);
 
   app.listen(PORT, () => {

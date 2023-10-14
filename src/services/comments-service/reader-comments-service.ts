@@ -9,6 +9,28 @@ export async function ReaderComments(page: number, itemsPerPage: number) {
     prisma.comments.findMany({
       skip,
       take: itemsPerPage,
+      select: {
+        id: true,
+        created_at: true,
+        description: true,
+        answers: true,
+        updated_at: true,
+        user: {
+          select: {
+            id: true,
+            email: true,
+            username: true,
+            Profile: {
+              select: {
+                avatar_url: true,
+                full_name: true,
+              },
+            },
+          },
+        },
+        likes: true,
+        did_not_like: true,
+      },
     }),
     prisma.comments.count(),
   ]);
