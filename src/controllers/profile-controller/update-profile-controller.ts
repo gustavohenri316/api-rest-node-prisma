@@ -15,19 +15,20 @@ export async function UpdateProfileController(req: Request, res: Response) {
       return res.status(404).json({ error: i18n.__("profile.not.found") });
     }
 
-    const updatedProfileData: any = {};
-    if (updatedData.full_name) {
-      updatedProfileData.full_name = updatedData.full_name;
-    }
-    if (updatedData.avatar_url) {
-      updatedProfileData.avatar_url = updatedData.avatar_url;
-    }
-    if (updatedData.address) {
-      updatedProfileData.address = updatedData.address;
-    }
-    if (updatedData.phone) {
-      updatedProfileData.phone = updatedData.phone;
-    }
+    const updatedProfileData: any = {
+      full_name: updatedData.full_name,
+      avatar_url: updatedData.avatar_url,
+      address: updatedData.address,
+      phone: updatedData.phone,
+      state: updatedData.state,
+      city: updatedData.city,
+      neighborhood: updatedData.neighborhood,
+      street: updatedData.street,
+      number: updatedData.number,
+      complement: updatedData.complement,
+      cep: updatedData.cep,
+    };
+
     const updatedProfile = await updateProfile(
       existingProfile.id,
       updatedProfileData

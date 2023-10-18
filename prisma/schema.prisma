@@ -55,35 +55,50 @@ model Genders {
 }
 
 model Profile {
-  id         String   @id @default(uuid())
-  full_name  String?
-  avatar_url String?
-  adress     String?
-  phone      String?
-  genders    Genders? @relation(fields: [gendersId], references: [id])
-  gendersId  String?
-  User       User[]
+  id           String   @id @default(uuid())
+  full_name    String?
+  avatar_url   String?
+  phone        String?
+  genders      Genders? @relation(fields: [gendersId], references: [id])
+  gendersId    String?
+  state        String?
+  city         String?
+  neighborhood String?
+  street       String?
+  number       String?
+  complement   String?
+  birthDate    String?
+  cep          String?
+  User         User[]
 
   @@map("profiles")
 }
 
 model Idea {
-  id          String      @id @default(uuid())
-  likes       Int
-  thumbnail   String
-  photo       IdeaPhoto[]
-  title       String
-  description String
-  summary     String
-  price       Int
-  internship  String?
-  created_at  DateTime    @default(now())
-  updated_at  DateTime    @updatedAt
-  comments    Comments[]
-  userId      String?
-  User        User?       @relation(fields: [userId], references: [id])
+  id           String      @id @default(uuid())
+  likes        Int
+  thumbnail    String
+  photo        IdeaPhoto[]
+  title        String
+  description  String
+  summary      String
+  price        Int
+  internship   Internship  @relation(fields: [internshipId], references: [id])
+  created_at   DateTime    @default(now())
+  updated_at   DateTime    @updatedAt
+  comments     Comments[]
+  userId       String?
+  User         User?       @relation(fields: [userId], references: [id])
+  internshipId String
 
   @@map("idea")
+}
+
+model Internship {
+  id          String @id @default(uuid())
+  description String
+  title       String
+  Idea        Idea[]
 }
 
 model IdeaPhoto {

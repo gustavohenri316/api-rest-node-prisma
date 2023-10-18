@@ -17,7 +17,6 @@ export async function addProfileToUser(userId: string, profileData: any) {
       data: {
         ...profileData,
         User: { connect: { id: userId } },
-        address: profileData.adress,
       },
     });
 
